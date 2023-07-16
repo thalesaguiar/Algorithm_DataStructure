@@ -18,7 +18,8 @@ struct People{
 
 int main(){
 
-    People queue[10];
+    int queueSize = 10;
+    People queue[queueSize];
     int index = -1;
     
     char input;
@@ -29,6 +30,13 @@ int main(){
         if(input == '+'){
             //insert
             cin >> people.name >> people.age;
+
+            //if the queue has sapce
+
+            if(index + 1 >= queueSize ){
+                cout <<"The queue is full";
+            }
+            
         }
 
         else if(input == '-'){
