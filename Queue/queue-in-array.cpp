@@ -1,3 +1,11 @@
+/*Bank queue
+ Input: A list of commands wich ends with
+ p  = stop | Stop the program;
+ + = person name and age |Person enter in queue;
+ - = person name and | person quit the queue;
+ a = the person was served in the queue;
+ */
+
 using namespace std;
 
 #include <iostream>
@@ -8,13 +16,6 @@ struct People
     int age;
 };
 
-/*make a program to manage the bank queue
- Input: A list of commands wich ends with p  = stop;
- + = person name and age |Person enter in queue
- - = person name and | person quit the queue
- A = the person was served in the queue
- */
-
 int main()
 {
 
@@ -24,13 +25,14 @@ int main()
 
     char input;
 
-    People people;
+    People person;
 
     while (cin >> input && input != 'p')
     {
         if (input == '+')
         { // insert
-            cin >> people.name >> people.age;
+            cin >> person.name >> person.age;
+            cout << person.name << " joined the queue" << endl;
 
             // if the queue has sapce
 
@@ -40,13 +42,33 @@ int main()
             }
             else
             {
-                queue[++currentPosition] = people; // insert people
+                queue[++currentPosition] = person; // insert person
             }
         }
 
-        else if (input == '-')
-        { // remove|quit
-            // search the people by the name
+        else if (input == '-') // remove|quit
+        {
+            string quitter;
+            // search the person by the name
+            cin >> quitter;
+            int quitterPosition = -1;
+
+            for (int i = 0; i < currentPosition; i++)
+            {
+                if (queue[i].name == quitter)
+                {
+                    quitterPosition = i;
+                    break;
+                }
+            }
+
+            if (quitterPosition == -1)
+            {
+                cout << "the person is not in the queue or the queue is empt" << endl;
+                continue;
+            }
+
+            cout << quitter << " left the queue" << endl;
         }
         else if (input == 'a')
         { // served
@@ -59,12 +81,13 @@ int main()
             People next = queue[0];
             cout << "attending " << next.name << endl;
 
-            //all people take the next position in queue
-            for(int i = 0 ; i < currentPosition; i++){
-                queue[i] = queue[i+1];
+            // all person take the next position in queue
+            for (int i = 0; i < currentPosition; i++)
+            {
+                queue[i] = queue[i + 1];
             }
 
-            //refresh the position of last people in queue
+            // refresh the position of last person in queue
             currentPosition = currentPosition - 1;
         }
 
@@ -73,27 +96,5 @@ int main()
             cout << "invalid input";
         }
     }
-
-    // em switch case
-
-    switch (input)
-    {
-    case '+':
-        // input
-        cin >> name;
-        break;
-
-    case '-':
-        // remove
-        break;
-
-    case 'a':
-        // served
-        break;
-
-    default:
-        cout << "invalid input !";
-    }
-
     return 0;
 }
