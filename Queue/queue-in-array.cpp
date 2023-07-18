@@ -2,13 +2,14 @@
  Input: A list of commands wich ends with
  p  = stop | Stop the program;
  + = person name and age |Person enter in queue;
- - = person name and | person quit the queue;
+ - = person name | person quit the queue;
  a = the person was served in the queue;
  */
 
 using namespace std;
 
 #include <iostream>
+
 
 struct People
 {
@@ -46,7 +47,11 @@ int main()
             }
         }
 
-        else if (input == '-') // remove|quit
+        else if (input == '-') // remove|quit        
+        // + Thales 24
+        // + Germano 23
+        // a
+        // 
         {
             string quitter;
             // search the person by the name
