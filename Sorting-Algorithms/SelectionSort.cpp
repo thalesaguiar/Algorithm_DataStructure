@@ -9,6 +9,7 @@ void selectionSort(int numbers[],int n){
     
         for(int j = i + 1; j < n; j++){
             if(numbers[j] < numbers[smallerindex])
+            int a;
         }
     }
 
